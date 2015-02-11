@@ -1,0 +1,15 @@
+{
+  "name": "websocket-demo",
+  "version": "1.0.0",
+  "description": "Demo of websocket client-server application using Angular and Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Rabl <chris@autovance.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.11.2",
+    "ws": "^0.7.1"
+  }
+}

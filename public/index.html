@@ -1,0 +1,32 @@
+<!doctype html>
+
+<html ng-app="WSDemo"  ng-controller="ActiveUsersController">
+  <head>
+    <title>{{activeUsers}} users</title>
+  </head>
+
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/ng-websocket/ng-websocket.js"></script>
+
+  <body>
+    <h1>{{activeUsers}} user<span ng-hide="activeUsers === 1">s</span> on this page</h1>
+  </body>
+
+  <script>
+    var app = angular.module('WSDemo', ['ngWebsocket']);
+
+    app.controller('ActiveUsersController', function ($scope, $websocket, $window) {
+      $scope.activeUsers = 0;
+      var ws = $websocket.$new('ws://localhost:3000');
+
+      ws.$on('$message', function (count) {
+        $scope.activeUsers = count;
+        $scope.$apply();
+      });
+
+      $window.onbeforeunload = function (e) {
+        ws.$close();
+      };
+    });
+  </script>
+</html>
